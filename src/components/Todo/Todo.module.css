@@ -1,0 +1,23 @@
+.list {
+  display: flex;
+  justify-content: space-between;
+  padding: 1px 20px;
+  column-gap: 10px;
+}
+
+.checkbox {
+}
+
+.label {
+  flex: 1 1 auto;
+}
+
+.button {
+  background-color: transparent;
+  font-size: 1.2rem;
+}
+
+.button:hover {
+  transform: rotate(15deg) scale(1.2);
+  color: var(--color-accent);
+}
