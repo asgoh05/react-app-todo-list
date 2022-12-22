@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AddTodo from "../AddTodo/AddTodo";
 import Todo from "../Todo/Todo";
 import style from "./TodoList.module.css";
 
 export default function TodoList({ filter }) {
-  const [todos, setTodos] = useState([
-    { id: "1", text: "first todo", status: "active" },
-    { id: "2", text: "second todo", status: "active" },
-  ]);
+  const [todos, setTodos] = useState(() => getDataFromLocalStorage());
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
+
   const handleAdd = (item) => {
     setTodos([...todos, item]);
   };
@@ -38,3 +40,8 @@ export default function TodoList({ filter }) {
     </section>
   );
 }
+
+const getDataFromLocalStorage = () => {
+  const todos = JSON.parse(localStorage.getItem("todos"));
+  return todos ? todos : [];
+};
